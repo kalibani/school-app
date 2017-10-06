@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h4 style="color:red"><%=dataError%></h4>
+    <h1>EDIT STUDENT DATA</h1>
+    <form class="" action="/students/edit/<%=dataStudents.id%>" method="POST">
+      <table>
+        <fieldset>
+          <br>
+          <legend>Edit Student Data:</legend>
+          first name:<br>
+          <input type="text" name="first_name" value="<%=dataStudents.first_name%>" placeholder="first_name">
+          <br>
+          last name:<br>
+          <input type="text" name="last_name" value="<%=dataStudents.last_name%>" placeholder="last_name">
+          <br>
+          email:<br>
+          <input type="text" name="email" value="<%=dataStudents.email%>" placeholder="email">
+          <br><br>
+          <input type="submit" value="EDIT STUDENT">
+        </fieldset>
+      </table>
+    </form>
+  </body>
+</html>
