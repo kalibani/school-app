@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>ADD STUDENT DATA</h1>
+    <h4 style="color:red"><%=dataError%></h4>
+    <form class="" action="/students/add" method="POST">
+      <table>
+        <fieldset>
+          <br>
+          <legend>Add Data Students:</legend>
+          first name:<br>
+          <input type="text" name="first_name" placeholder="first_name">
+          <br>
+          last name:<br>
+          <input type="text" name="last_name" placeholder="last_name">
+          <br>
+          email:<br>
+          <input type="text" name="email" placeholder="email">
+          <br><br>
+          <input type="submit" value="ADD STUDENT">
+        </fieldset>
+      </table>
+    </form>
+  </body>
+</html>
