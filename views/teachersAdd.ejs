@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<%- include partial/head %>
+  <body>
+    <h1>ADD TEACHER DATA</h1>
+    <% if(error) { %>
+    <h3 style="color:red"><%=error%></h3>
+    <%}%>
+    <form class="" action="/teachers/add" method="POST">
+      <table>
+        <fieldset>
+          <br>
+          <legend>Add Teacher Data:</legend>
+          first name:<br>
+          <input type="text" name="first_name" placeholder="first_name">
+          <br>
+          last name:<br>
+          <input type="text" name="last_name" placeholder="last_name">
+          <br>
+          email:<br>
+          <input type="text" name="email" placeholder="email">
+          <br><br>
+          <input type="submit" value="Add Teacher">
+        </fieldset>
+      </table>
+    </form>
+  </body>
+</html>

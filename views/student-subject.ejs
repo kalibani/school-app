@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <%- include partial/head %>
+  <body>
+    <form class="" action="/students/<%= dataStudents.id %>/addsubject" method="post">
+      <table>
+        <fieldset>
+          <br>
+          <legend>ADD SUBJECT TO STUDENT</legend>
+          first name:<br>
+          <input type="text" name="first_name" value = "<%=dataStudents.first_name %>" placeholder="first_name">
+          <br>
+          last name:<br>
+          <input type="text" name="last_name" value = "<%=dataStudents.last_name %>" placeholder="last_name">
+          <br>
+          email:<br>
+          <input type="text" name="email" value = "<%=dataStudents.email %>" placeholder="email">
+          <br>
+          Choose Subject<br>
+          <select class="form-control" name="SubjectId">
+            <% dataSubject.forEach(rows => { %>
+              <option value="<%= rows.id %>"><%= rows.subject_name %></option>
+            <%}) %>
+          </select>
+          <br><br>
+          <button type="submit" name="button" class="btn btn-info"><span class="glyphicon glyphicon-send"></span> &nbsp; Add Subject</button>
+        </fieldset>
+      </table>
+    </form>
+  </body>
+</html>

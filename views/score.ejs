@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <%- include partial/head %>
+  <body>
+    <h1>Give Score</h1>
+    <form action="/subjects/<%= dataSubject[0].id %>/<%= dataStudents[0].id %>/give-score" method="post">
+      <table>
+          <tr>
+            <td>Student Name</td>
+            <td> &nbsp; : &nbsp;</td>
+            <td><%= dataStudents[0].getfullName()%></td>
+          </tr>
+          <tr>
+            <td>Subject Name</td>
+            <td> &nbsp; : &nbsp;</td>
+            <td><%= dataSubject[0].subject_name %></td>
+          </tr>
+          <tr>
+            <td>Score</td>
+            <td> &nbsp; : &nbsp;</td>
+            <td>
+              <input type="text" name="score" placeholder="ex: 80" class="form-control" autofocus>
+            </td>
+            <td><input type="submit" value="give-score"></td>
+          </tr>
+      </table>
+    </form>
+  </body>
+</html>

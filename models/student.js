@@ -8,10 +8,21 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       validate:
       {
-        isEmail: true
+        isEmail:
+        {
+          args: true,
+          msg: 'Format Email Salah!'
+        }
       }
     }
   })
+
+  Student.associate = function (models) {
+    Student.belongsToMany(models.Subject, {
+      through: 'StudentSubject'
+    })
+  }
+
   Student.prototype.getfullName = function () {
     return this.first_name+' '+this.last_name;
   }
