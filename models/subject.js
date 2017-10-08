@@ -9,5 +9,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+  Subject.associate = function (models) {
+    Subject.hasMany(models.Teacher)
+    Subject.belongsToMany(models.Student, {
+      through: 'StudentSubject'
+    })
+  };
   return Subject;
 };
