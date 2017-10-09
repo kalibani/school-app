@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>LOGIN</h1>
+    <% if(error){ %>
+        <blink><span style="color:red"><%= error %></span></blink>
+      <% } %>
+    <div class="login_div">
+      <form class="login_form" action="/login" method="post">
+        <label for="username">Username  :</label>
+        <input type="text" id="email" name="email" value="">
+        <br><br>
+        <label for="password">Password  :</label>
+        <input type="text" id="password" name="password" value="">
+        <br><br>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+      </body>
+</html>

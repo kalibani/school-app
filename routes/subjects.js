@@ -1,7 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const Model = require('../models');
-const score = require('../helpers/scoreList');
+const Score = require('../helpers/scoreList');
+
+router.use((req,res, next)=>{
+  if(req.session.authority == 'academic' || req.session.authority == 'headmaster'){
+     next();
+  } else {
+    res.send('Maaf anda tidak diizinkan mengakses halaman ini');
+  }
+})
 
 router.get('/', (req, res)=>{
   Model.Subject.findAll()
@@ -47,12 +55,12 @@ router.get('/:id/enrolledstudents', (req, res) => {
     include: [{ all: true }]
   })
   .then(rowsStudentSubject => {
-    let Score = []
+    let score = []
     for(var i = 0; i < rowsStudentSubject.length; i++){
-      Score.push(rowsStudentSubject[i].score)
+      score.push(rowsStudentSubject[i].score)
     }
     // res.send(score(Score))
-    res.render('enrolledStudents', {dataEnrolled: rowsStudentSubject, scoreLetter: score(Score), pageTitle: 'data enrolledStudents'})
+    res.render('enrolledStudents', {dataEnrolled: rowsStudentSubject, scoreLetter: Score(score), pageTitle: 'data enrolledStudents'})
   })
 })
 

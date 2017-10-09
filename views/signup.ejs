@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h1><center>SIGN UP<center></h1>
+      <button id="btn-back" onclick="window.location='/'">Back</button>
+    <div>
+      <form action="/signup" method="post">
+        <div class="container">
+          <label><b>Username</b></label>
+          <input type="text" name="username" />
+          <label><b>Password</b></label>
+          <input type="password" name="password" />
+          <label><b>Role</b></label>
+          <select name="role">
+             <option value="headmaster">Headmaster</option>
+             <option value="teacher">Teacher</option>
+             <option value="academic">Academic</option>
+          </select>
+          <div class="clearfix">
+            <button type="submit">Register</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

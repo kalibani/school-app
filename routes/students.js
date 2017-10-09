@@ -3,6 +3,14 @@ const router = express.Router();
 
 const Model = require('../models');
 
+router.use((req,res, next)=>{
+  if(req.session.authority == 'headmaster' || req.session.authority == 'teacher' || req.session.authority == 'academic'){
+     next();
+  } else {
+    res.send('Maaf anda tidak diizinkan mengakses halaman ini');
+  }
+})
+
 router.get('/', (req, res)=>{
   Model.Student.findAll({
     order:[

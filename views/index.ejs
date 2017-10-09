@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%- include partial/head %>
-    <%- include partial/style %>
+
   </head>
   <body>
     <h1>Welcome To School App</h1>
     <div class="topnav" id="myTopnav">
-      <a href="/teachers">Teacher</a>
-      <a href="/students">Student</a>
-      <a href="/subjects">Subject</a>
+      <a href="/signup">Signup</a>
+      <a href="/login">Login</a>
+      <a href="/logout" onclick="return confirm('are you sure?');">Logout</a>
     </div>
 </body>
 </html>

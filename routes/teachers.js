@@ -3,6 +3,14 @@ const router = express.Router();
 
 const Model = require('../models');
 
+router.use((req,res, next)=>{
+  if(req.session.authority == "headmaster"){
+     next();
+  } else {
+    res.send('Maaf anda tidak diizinkan mengakses halaman ini');
+  }
+})
+
 router.get('/', (req, res)=>{
   Model.Teacher.findAll({order:[['first_name', 'ASC']]})
   .then(rowsTeachers=>{
