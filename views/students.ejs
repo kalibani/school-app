@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Data Students</title>
-  </head>
+  <%- include partial/head %>
   <body>
     <h1>Students Data</h1>
     <a href="/students/add">Student Add</a>
@@ -29,6 +26,7 @@
             <td><%=data.last_name%></td>
             <td><%=data.email%></td>
             <td>
+              <a href="/students/<%= data.id %>/addsubject">Add Subject</a>
               <a href="students/edit/<%=data.id%>">Edit</a>
               <a href="students/delete/<%=data.id%>" onclick="return confirm('delete this student?')">Delete</a>
             </td>

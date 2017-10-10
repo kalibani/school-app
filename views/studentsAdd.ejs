@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+<%- include partial/head %>
   <body>
-
     <h1>ADD STUDENT DATA</h1>
-    <h4 style="color:red"><%=dataError%></h4>
+    <% if(error) { %>
+    <h3 style="color:red"><%=error%></h3>
+    <%}%>
     <form class="" action="/students/add" method="POST">
       <table>
         <fieldset>

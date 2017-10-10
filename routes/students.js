@@ -10,7 +10,7 @@ router.get('/', (req, res)=>{
     ]
   })
   .then((rowsStudents)=>{
-    res.render('students', {dataStudents: rowsStudents})
+    res.render('students', { dataStudents: rowsStudents, pageTitle: 'Student Page'})
   })
   .catch(err=>{
     res.send(err)
@@ -18,13 +18,7 @@ router.get('/', (req, res)=>{
 })
 
 router.get('/add', (req, res)=>{
-    let errorMessage = ''
-    if (req.query.hasOwnProperty('error')) {
-        if (req.query.error === 'Validation error: Validation isEmail on email failed') {
-            errorMessage = 'Format Email Salah'
-        }
-    }
-    res.render('studentsAdd', {dataError: errorMessage})
+  res.render('studentsAdd', {error: null, pageTitle : 'Add Student'})
 })
 
 router.post('/add', (req, res)=>{
@@ -39,22 +33,15 @@ router.post('/add', (req, res)=>{
   })
   .catch(err=>{
     // res.send(err.message)
-    res.redirect(`/students/add?error=${err.message}`)
+    res.render('studentsAdd', {error: err.message, pageTitle: 'Add Student'})
   })
 
 })
 
 router.get('/edit/:id', (req, res) =>{
-  let errMsg = ''
-  if (req.query.hasOwnProperty('error')) {
-    if (req.query.error==='Validation error: Validation isEmail on email failed'){
-      errMsg = 'Format Email Salah!'
-    }
-  }
-
   Model.Student.findById(req.params.id)
   .then(rowsStudents =>{
-    res.render('studentsEdit', {dataStudents: rowsStudents, dataError: errMsg})
+    res.render('studentsEdit', {dataStudents: rowsStudents, error: null, pageTitle: 'Edit Student'})
   })
   .catch(err =>{
     res.send(err)
@@ -74,20 +61,55 @@ router.post('/edit/:id', (req, res)=>{
     res.redirect('/students')
   })
   .catch(err=>{
-    res.redirect(`/students/edit/${req.params.id}?error=${err.message}`)
+    Model.Student.findById(req.params.id)
+    .then(rowsStudents=>{
+      res.render('studentsEdit', {dataStudents: rowsStudents, error: err.message, pageTitle: 'Edit Student'})
+    })
   })
 })
 
 router.get('/delete/:id', (req, res) => {
-  Model.Student.destroy(
-  {
-    where : {id:req.params.id}
+  Model.Student.destroy({
+    where: {
+      id: req.params.id
+    }
   })
-  .then(rows=>{
+  .then(ok => {
+    Model.StudentSubject.destroy({
+      where: {
+        StudentId: req. params.id
+      }
+    })
+    .then(()=> {
+      res.redirect('/students')
+    })
+  })
+})
+
+router.get('/:id/addsubject', (req, res) => {
+  Model.Student.findAll({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(rowsStudents => {
+    Model.Subject.findAll()
+    .then(rowsSubjects => {
+      res.render('student-subject', {dataStudents: rowsStudents[0], dataSubject: rowsSubjects, pageTitle: 'Add Subject'})
+
+    })
+  })
+})
+
+router.post('/:id/addsubject', (req, res) => {
+  Model.StudentSubject.create({
+    StudentId: req.params.id,
+    SubjectId: req.body.SubjectId,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  })
+  .then(ok => {
     res.redirect('/students')
-  })
-  .catch(err =>{
-    res.send(err)
   })
 })
 

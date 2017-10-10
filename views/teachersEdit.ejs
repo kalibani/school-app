@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<%- include partial/head %>
+  <body>
+    <h1>EDIT TEACHER DATA</h1>
+    <% if(error) { %>
+    <h3 style="color:red"><%=error%></h3>
+    <%}%>
+    <form class="" action="/teachers/edit/<%=dataTeachers.id%>" method="POST">
+      <table>
+        <fieldset>
+          <br>
+          <legend>Edit teacher Data:</legend>
+          first name:<br>
+          <input type="text" name="first_name" value="<%=dataTeachers.first_name%>" placeholder="first_name">
+          <br>
+          last name:<br>
+          <input type="text" name="last_name" value="<%=dataTeachers.last_name%>" placeholder="last_name">
+          <br>
+          email:<br>
+          <input type="text" name="email" value="<%=dataTeachers.email%>" placeholder="email">
+          <br>
+          Subject Name:<br>
+          <select class="" name="SubjectId">
+            <%if(dataSubject){dataSubject.forEach(data =>{%>
+            <% if (dataTeachers.SubjectId == data.id) {%>
+              <option value="<%=data.id%>" selected><%=data.subject_name%></option>
+              <%} else {%>
+                <option value="<%=data.id%>"><%=data.subject_name%></option>
+              <%}%>
+            <% })}%>
+          </select>
+          <br><br>
+          <input type="submit" value="EDIT TEACHER">
+        </fieldset>
+      </table>
+    </form>
+  </body>
+</html>
